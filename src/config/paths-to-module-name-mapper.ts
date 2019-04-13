@@ -39,6 +39,7 @@ export const pathsToModuleNameMapper = (
     const segments = fromPath.split(/\*/g)
     if (segments.length === 1) {
       pattern = `^${escapeRegex(fromPath)}$`
+      if (fromPath === '*') pattern = `/${pattern}`
       jestMap[pattern] = `${prefix}${target}`
     } else if (segments.length === 2) {
       pattern = `^${escapeRegex(segments[0])}(.*)${escapeRegex(segments[1])}$`
