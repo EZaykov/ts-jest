@@ -43,6 +43,7 @@ export const pathsToModuleNameMapper = (
       jestMap[pattern] = `${prefix}${target}`
     } else if (segments.length === 2) {
       pattern = `^${escapeRegex(segments[0])}(.*)${escapeRegex(segments[1])}$`
+      if (fromPath === '*') pattern = `/${pattern}`
       jestMap[pattern] = `${prefix}${target.replace(/\*/g, '$1')}`
     } else {
       logger.warn(interpolate(Errors.NotMappingMultiStarPath, { path: fromPath }))
